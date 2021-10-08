@@ -1,0 +1,155 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=iso-8859-1">
+<meta name="description" content="JojoDiff is a program that outputs the differences between two binary files using a fast, heuristic algorithm.">
+<meta name="keywords" content="diff, jdiff, binarydiff, binary diff, binary difference, difference between two binary files, heuristic algorithm">
+<TITLE>JojoDiff - diff utility for binary files</TITLE>
+<BODY>
+
+<center>
+<H1>JojoDiff - diff utility for binary files</H1>
+<font size="-1">
+Copyright &copy; 2020 <a href="mailto:joheirba@users.sourceforge.net">Joris Heirbaut</a><br>
+</font>
+    This program is free software: you can redistribute it and/or modify</br>
+    it under the terms of the GNU General Public License as published by</br>
+    the Free Software Foundation, either version 3 of the License, or</br>
+    (at your option) any later version.</p>
+
+    This program is distributed in the hope that it will be useful,</br>
+    but WITHOUT ANY WARRANTY; without even the implied warranty of</br>
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</br>
+    GNU General Public License for more details.</p>
+
+    You should have received a copy of the GNU General Public License</br>
+    along with this program. If not, see <a href="https://www.gnu.org/licenses/gpl-3.0.html">
+    https://www.gnu.org/licenses/gpl-3.0.html</a>.</p>
+This software is hosted by:</br>
+<a href="http://sourceforge.net"> 
+<IMG src="http://sourceforge.net/sflogo.php?group_id=56897&amp;type=5" width="210" height="62" border="0" alt="SourceForge Logo">
+</a>
+</p>
+</center>
+
+<H2>1. Purpose</H2>
+<ul>
+    <b>JDIFF</b> differentiates two files so that the second file can be recreated from
+                 the first by "undiffing". </br>
+    <b>JDIFF</b> aims for the smallest possible diff-file.</p> 
+    
+    For example: 
+    <ul>
+    <li><b>jdiff</b> -j old-file.tar new-file.tar dif-file.jdf
+    <li><b>jdiff</b> -u old-file.tar dif-file.jdf new-file2.tar</br>
+    </ul>
+    will recreate new-file2.tar identical to new-file.tar.
+</p>
+    Possible applications include:
+    <ul>
+    <li> incremental backups, or</br>
+    <li> synchronising files between two computers over a slow network.
+    </ul>
+</p>
+    Download JojoDiff from <a href="http://sourceforge.net/projects/jojodiff/">Jojo's Binary Diff Download Page</a>.
+</p>
+</ul>
+
+<H2>2. Version and history</H2>
+<ul>
+    The current version of this utility is bèta 0.8.4c from September 2020. </p>
+    Change history:
+    <ul><table>
+    <tr><td> v0.8.5 </td><td> October 2020   </td><td> Bugfix in Windows binary, improved internal logic.</td></tr>
+    <tr><td> v0.8.4 </td><td> September 2020 </td><td> Improved progress feedback, support for sequential files.</td></tr>
+    <tr><td> v0.8   </td><td> December 2011  </td><td> Conversion to C++.</td></tr>
+    <tr><td> v0.7   </td><td> November 2009  </td><td> Index table collision strategy for uniform distribution.</td></tr>
+    <tr><td> v0.6   </td><td> April 2005     </td><td> Large files support.</td></tr>
+    <tr><td> v0.5   </td><td> September 2003 </td><td> Revision of file-buffering logic.</td></tr>
+    <tr><td> v0.4c  </td><td> January 2003   </td><td> Selection algorithm between multiple matches.</td></tr>
+    <tr><td> v0.4b  </td><td> October 2002   </td><td> Optimize matches. </td></tr>
+    <tr><td> v0.4a  </td><td> September 2002 </td><td> Select "best" of multiple matches. </td></tr>
+    <tr><td> v0.3a  </td><td> July 2002      </td><td> Copy/insert algorithm. </td></tr>
+    <tr><td> v0.2c  </td><td> July 2002      </td><td> Bugfix on divide-by-zero in verbose mode. </td></tr>
+    <tr><td> v0.2b  </td><td> July 2002      </td><td> Bugfix on code-length of 252. </td></tr>
+    <tr><td> v0.2a  </td><td> June 2002      </td><td> Optimized patch files. </td></tr>
+    <tr><td width=10%> v0.1  </td><td width=25%> June 2002      </td><td> Insert/delete algorithm. </td></tr>
+    </table></ul>
+</ul>
+
+<H2>3. Installation</H2>
+<ul>
+    On Windows systems: 
+    <ul>
+    <li> Compiled executables are within the "win" directory. You can run them
+    from a command prompt.
+    </ul>
+</p>
+    On Linux systems:
+    <ul>
+    <li> Compile the source by running "make" within the "src" directory or 
+         use the compiled executable within the linux directory.
+    <li> Copy the resulting executable to your /usr/local/bin. 
+    </ul>
+</p>
+</ul>
+
+<H2>4. Usage</H2>
+    <ul>
+    <li><b>jdiff</b> -j [options] source_file destination_file [diff_file]
+    <li><b>jdiff</b> -u [options] source_file diff_file [destination_file]
+    </ul>
+    
+    <ul><b>Options:</b>
+        <table>
+        <tr><td> -j    </td><td> </td><td> JDiff:  create a difference file.                         </td></tr>
+        <tr><td> -u    </td><td> </td><td> Undiff: undiff a difference file.                         </td></tr>
+        <tr></tr>
+        <tr><td>-v     </td><td> --verbose </td><td> Verbose: greeting, results and tips.                      </td></tr>
+        <tr><td>-vv    </td><td>           </td><td> Extra Verbose: progress info and statistics.              </td></tr>
+        <tr><td>-vvv   </td><td>           </td><td> Ultra Verbose: all info, including help and details.      </td></tr>
+        <tr><td>-h -hh </td><td> --help    </td><td> Help, additional help (-hh) and exit.                     </td></tr>
+        <tr><td>-l     </td><td>--listing    </td><td> Detailed human readable output.                         </td></tr>
+        <tr><td>-r     </td><td>--regions    </td><td> Grouped  human readable output.                         </td></tr>
+        <tr><td>-c     </td><td>--console    </td><td> Write verbose and debug info to stdout.                 </td></tr>
+        <tr></tr>
+        <tr><td>-b  </td><td>--better            </td><td> Better: use more memory, search more.              </td></tr>
+        <tr><td>-bb </td><td>                    </td><td> Best:   even more memory, search more.             </td></tr>
+        <tr><td>-f  </td><td>--lazy              </td><td> Lazy:   no unbuffered searching (often slower).    </td></tr>
+        <tr><td>-ff </td><td>                    </td><td> Lazier: no full index table.                       </td></tr>
+        <tr><td>-p  </td><td>--sequential-source </td><td> Sequential source (to avoid !) (with - for stdin). </td></tr>
+        <tr><td>-q  </td><td>--sequential-dest   </td><td> Sequential destination (with - for stdin).         </td></tr>
+        <tr><td>-s  </td><td>--stdio             </td><td> Use stdio files (for testing).                     </td></tr>
+        <tr></tr>
+        <tr><td>-a  </td><td>--search-size <size> </td><td> Size (in KB) to search (default=buffer-size).     </td></tr>
+        <tr><td>-i  </td><td>--index-size  <size> </td><td> Size (in MB) for index table    (default 64MB).   </td></tr>
+        <tr><td>-k  </td><td>--block-size  <size> </td><td> Block size in bytes for reading (default 8192).   </td></tr>
+        <tr><td>-m  </td><td>--buffer-size <size> </td><td> Size (in KB) for search buffers (default 2MB).    </td></tr>
+        <tr><td>-n  </td><td>--search-min <count> </td><td> Minimum number of matches to search (default 2).  </td></tr>
+        <tr><td>-x  </td><td>--search-max <count> </td><td> Maximum number of matches to search (default 512).</td></tr>
+        </table>
+    </p>
+    <b>Hint:</b>
+        Do not use jdiff on compressed files. Rather use jdiff first and compress
+        afterwards, e.g.: jdiff -j old new | gzip >dif.jdf.gz (or 7z with -si)
+    </p>
+
+    <b>Principles:</b>
+        <ul>
+        <b>JDIFF</b> tries to find equal regions between two binary files using a heuristic
+        hash algorithm and outputs the differences between both files.
+        Heuristics are generally used for improving performance and memory usage,
+        at the cost of accuracy. Therefore, this program may not find a minimal set
+        of differences between files.</br>
+        </ul>
+    </p>
+    <b>Notes:</b>
+        <ul>
+        <li>  Options -b, -bb, -f and -ff should be used before other options.
+        <li>  Accuracy may be improved by increasing the index table size (-i) or
+              the buffer size (-m).
+        <li>  The index table size is always lowered to the nearest lower prime number.
+        <li>  Output is sent to standard output if no output file is specified.
+        </ul>
+    </ul>
+</BODY>
+</HTML>
